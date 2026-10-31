@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.appointment.grpc";
+option java_outer_classname = "AuthProto";
+
+service AuthService {
+    rpc ProcessUserByEmail(GetUserByEmailRequest) returns (GetUserResponse) {}
+    rpc ProcessUserById(GetUserByIdRequest) returns (GetUserResponse) {}
+}
+
+message GetUserByEmailRequest {
+    string email = 1;
+}
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+message GetUserResponse {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string contact_no = 5;
+    string full_name = 6;
+    repeated string roles = 7;
+}

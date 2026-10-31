@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.appointment.grpc";
+option java_outer_classname = "AppointmentProto";
+
+service AppointmentService {
+  rpc processAppointmentByReferenceNo(GetAppointmentByReferenceNoRequest) returns (GetAppointmentResponse) {}
+}
+
+message GetAppointmentByReferenceNoRequest {
+  string reference_no = 1;
+}
+
+message GetAppointmentResponse {
+  string id = 1;
+  string customer_id = 2;
+  string branch_id = 3;
+  string appointment_date = 4;
+  string slot_start = 5;
+  string slot_end = 6;
+  string description = 7;
+  string reference_no = 8;
+  string status = 9;
+  string cancellation_reason = 10;
+}
