@@ -3,6 +3,7 @@ package co.appointment.shared.service.grcp;
 import co.appointment.grpc.AuthServiceGrpc;
 import co.appointment.grpc.GetUserResponse;
 import co.appointment.grpc.GetVerificationTokenResponse;
+import co.appointment.grpc.ProcessVerificationTokenRequest;
 import co.appointment.shared.record.UserSummary;
 import co.appointment.shared.record.VerificationTokenSummary;
 import com.google.protobuf.StringValue;
@@ -21,9 +22,12 @@ public abstract class AbstractGrpcAuthClient implements GrpcAuthClient {
     }
 
     @Override
-    public VerificationTokenSummary getVerificationTokenByEmail(final String email) {
-        GetVerificationTokenResponse response = authServiceBlockingStub.processVerificationTokenByEmail(
-                StringValue.newBuilder().setValue(email).build());
+    public VerificationTokenSummary getVerificationTokenByEmail(final String email, final String tokenType) {
+        ProcessVerificationTokenRequest request = ProcessVerificationTokenRequest.newBuilder()
+                .setEmail(email)
+                .setTokenType(tokenType)
+                .build();
+        GetVerificationTokenResponse response = authServiceBlockingStub.processVerificationTokenByEmail(request);
         if (response == null) {
             return null;
         }

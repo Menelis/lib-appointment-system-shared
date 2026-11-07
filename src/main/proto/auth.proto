@@ -10,9 +10,13 @@ import "google/protobuf/wrappers.proto";
 service AuthService {
     rpc ProcessUserByEmail(google.protobuf.StringValue) returns (GetUserResponse) {}
     rpc ProcessUserById(google.protobuf.StringValue) returns (GetUserResponse) {}
-    rpc ProcessVerificationTokenByEmail(google.protobuf.StringValue) returns (GetVerificationTokenResponse) {}
+    rpc ProcessVerificationTokenByEmail(ProcessVerificationTokenRequest) returns (GetVerificationTokenResponse) {}
 }
 
+message ProcessVerificationTokenRequest {
+    string email = 1;
+    string token_type = 2;
+}
 message GetUserResponse {
     string id = 1;
     string first_name = 2;

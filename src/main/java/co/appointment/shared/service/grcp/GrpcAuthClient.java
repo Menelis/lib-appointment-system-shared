@@ -21,5 +21,5 @@ public interface GrpcAuthClient {
      */
     UserSummary getUserById(UUID id);
 
-    VerificationTokenSummary getVerificationTokenByEmail(String email);
+    VerificationTokenSummary getVerificationTokenByEmail(String email, String tokenType);
 }

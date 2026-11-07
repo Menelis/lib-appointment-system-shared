@@ -1,6 +1,8 @@
 package co.appointment.shared.event;
 
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class AuthEvent implements DomainEvent {
 
     private String email;
+    private String tokenType;
     private UUID eventId;
 
     @Override
