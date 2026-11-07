@@ -1,13 +1,11 @@
 package co.appointment.shared.service.grcp;
 
 import co.appointment.grpc.AuthServiceGrpc;
-import co.appointment.grpc.GetUserByEmailRequest;
-import co.appointment.grpc.GetUserByIdRequest;
 import co.appointment.grpc.GetUserResponse;
-import co.appointment.grpc.GetVerificationTokenRequest;
 import co.appointment.grpc.GetVerificationTokenResponse;
 import co.appointment.shared.record.UserSummary;
 import co.appointment.shared.record.VerificationTokenSummary;
+import com.google.protobuf.StringValue;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 
@@ -18,17 +16,14 @@ public abstract class AbstractGrpcAuthClient implements GrpcAuthClient {
 
     @Override
     public UserSummary getUserByEmail(final String email) {
-        GetUserByEmailRequest request =
-                GetUserByEmailRequest.newBuilder().setEmail(email).build();
-        return getUserSummary(authServiceBlockingStub.processUserByEmail(request));
+        return getUserSummary(authServiceBlockingStub.processUserByEmail(
+                StringValue.newBuilder().setValue(email).build()));
     }
 
     @Override
     public VerificationTokenSummary getVerificationTokenByEmail(final String email) {
-        GetVerificationTokenRequest request =
-                GetVerificationTokenRequest.newBuilder().setEmail(email).build();
-
-        GetVerificationTokenResponse response = authServiceBlockingStub.processVerificationTokenByEmail(request);
+        GetVerificationTokenResponse response = authServiceBlockingStub.processVerificationTokenByEmail(
+                StringValue.newBuilder().setValue(email).build());
         if (response == null) {
             return null;
         }
@@ -41,9 +36,8 @@ public abstract class AbstractGrpcAuthClient implements GrpcAuthClient {
     }
 
     public UserSummary getUserById(final UUID id) {
-        GetUserByIdRequest request =
-                GetUserByIdRequest.newBuilder().setId(id.toString()).build();
-        return getUserSummary(authServiceBlockingStub.processUserById(request));
+        return getUserSummary(authServiceBlockingStub.processUserById(
+                StringValue.newBuilder().setValue(id.toString()).build()));
     }
 
     private UserSummary getUserSummary(final GetUserResponse response) {

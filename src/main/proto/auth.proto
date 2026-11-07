@@ -4,17 +4,13 @@ option java_multiple_files = true;
 option java_package = "co.appointment.grpc";
 option java_outer_classname = "AuthProto";
 
-service AuthService {
-    rpc ProcessUserByEmail(GetUserByEmailRequest) returns (GetUserResponse) {}
-    rpc ProcessUserById(GetUserByIdRequest) returns (GetUserResponse) {}
-    rpc ProcessVerificationTokenByEmail(GetVerificationTokenRequest) returns (GetVerificationTokenResponse) {}
-}
+// Import Google's well-known wrapper types
+import "google/protobuf/wrappers.proto";
 
-message GetUserByEmailRequest {
-    string email = 1;
-}
-message GetUserByIdRequest {
-    string id = 1;
+service AuthService {
+    rpc ProcessUserByEmail(google.protobuf.StringValue) returns (GetUserResponse) {}
+    rpc ProcessUserById(google.protobuf.StringValue) returns (GetUserResponse) {}
+    rpc ProcessVerificationTokenByEmail(google.protobuf.StringValue) returns (GetVerificationTokenResponse) {}
 }
 
 message GetUserResponse {
@@ -25,10 +21,6 @@ message GetUserResponse {
     string contact_no = 5;
     string full_name = 6;
     repeated string roles = 7;
-}
-
-message GetVerificationTokenRequest {
-    string email = 1;
 }
 message GetVerificationTokenResponse {
     string id = 1;
