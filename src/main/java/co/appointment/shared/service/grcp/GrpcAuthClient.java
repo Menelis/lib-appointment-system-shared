@@ -1,6 +1,7 @@
 package co.appointment.shared.service.grcp;
 
 import co.appointment.shared.record.UserSummary;
+import co.appointment.shared.record.VerificationTokenSummary;
 import java.util.UUID;
 
 public interface GrpcAuthClient {
@@ -19,4 +20,6 @@ public interface GrpcAuthClient {
      * @return {@link UserSummary}
      */
     UserSummary getUserById(UUID id);
+
+    VerificationTokenSummary getVerificationTokenByEmail(String email);
 }

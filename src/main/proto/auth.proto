@@ -7,6 +7,7 @@ option java_outer_classname = "AuthProto";
 service AuthService {
     rpc ProcessUserByEmail(GetUserByEmailRequest) returns (GetUserResponse) {}
     rpc ProcessUserById(GetUserByIdRequest) returns (GetUserResponse) {}
+    rpc ProcessVerificationTokenByEmail(GetVerificationTokenRequest) returns (GetVerificationTokenResponse) {}
 }
 
 message GetUserByEmailRequest {
@@ -24,4 +25,14 @@ message GetUserResponse {
     string contact_no = 5;
     string full_name = 6;
     repeated string roles = 7;
+}
+
+message GetVerificationTokenRequest {
+    string email = 1;
+}
+message GetVerificationTokenResponse {
+    string id = 1;
+    string token = 2;
+    uint64 expiry_date = 3;
+    string token_type = 4;
 }
