@@ -17,8 +17,8 @@ message GetAppointmentResponse {
   string customer_id = 2;
   string branch_id = 3;
   string appointment_date = 4;
-  string slot_start = 5;
-  string slot_end = 6;
+  optional string slot_start = 5;
+  optional string slot_end = 6;
   optional string description = 7;
   string reference_no = 8;
   string status = 9;
