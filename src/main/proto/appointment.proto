@@ -19,8 +19,8 @@ message GetAppointmentResponse {
   string appointment_date = 4;
   string slot_start = 5;
   string slot_end = 6;
-  string description = 7;
+  optional string description = 7;
   string reference_no = 8;
   string status = 9;
-  string cancellation_reason = 10;
+  optional string cancellation_reason = 10;
 }

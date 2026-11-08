@@ -11,10 +11,9 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ServiceResponseDto {
     private boolean success;
-    private String errorDescription;
     private UUID correlationId;
     private String referenceNo;
-    private String successMessage;
+    private String responseMessage;
 
     @Builder.Default
     private OffsetDateTime responseTime = OffsetDateTime.now();
