@@ -28,4 +28,8 @@ public interface AuthenticationFacade {
     default List<String> getClaimAsList(String claimName) {
         return List.of();
     }
+
+    default boolean hasRole(String role) {
+        return false;
+    }
 }
